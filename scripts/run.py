@@ -100,7 +100,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--gui', default=True)
     parser.add_argument('--path', default=JAR)
-    parser.add_argument('--agents-count', default=3)
+    parser.add_argument('--agents-count', default=50)
     parser.add_argument('--agents-links', default=0)
     args = parser.parse_args()
 
