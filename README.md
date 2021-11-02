@@ -1,2 +1,3 @@
 # Jade-Average
-Average of the randon numbers generated in multi-agent environment
+
+Average of the random numbers generated in multi-agent environment.

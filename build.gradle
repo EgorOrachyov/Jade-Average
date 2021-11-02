@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'org.mt'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation files("/deps/jade-4.5.0.jar")
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'jade.Boot'
+    }
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
