@@ -7,6 +7,17 @@ The idea of the algorithm is to choose by voting a leader based on
 agents ids and the initiate bfs from leader to collect sums of children
 and get the result sum in leader to send it to the `center`.
 
+### Metrics
+| Memory | Messages in network | Operations count | Time | Number of links | Messages to center |
+|:---    |:---                 |:---              |:---  |:---             |:---                |
+| O(n)   | O(m * n)            | O(n)             | O(n) | any             | O(1)               | 
+
+> n - number of agents in the network.  
+> m - number of edges in agents network.  
+> O(*) - big o notation.
+
+### Technical details
+
 #### Algorithm assumptions
 - Agents network topology is arbitrary
 - Connections between agents are bi-directed
