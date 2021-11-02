@@ -26,7 +26,10 @@ public class NumberAgent extends Agent {
                 links.add(args[i].toString());
         }
 
+        // Executed first to choose leader
         addBehaviour(new ChooseLeaderBehaviour(this));
+        // Defines how we will behave: leader or child
+        addBehaviour(new TransitionBehaviour(this));
     }
 
     @Override
