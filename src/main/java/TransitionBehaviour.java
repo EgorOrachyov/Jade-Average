@@ -6,8 +6,15 @@ public class TransitionBehaviour extends NumberAgentBehaviour {
     @Override
     public void action() {
         var isLeader = self.getId() == self.getLeader();
-        if (isLeader) self.addBehaviour(new LeaderBfsBehaviour(self));
-        else self.addBehaviour(new ChildBfsBehaviour(self));
+
+        if (isLeader) {
+            logger.info(self.getLocalName() + " I am leader, go to bfs");
+            self.addBehaviour(new LeaderBfsBehaviour(self));
+        }
+        else {
+            logger.info(self.getLocalName() + " I am child, go to bfs");
+            self.addBehaviour(new ChildBfsBehaviour(self));
+        }
     }
 
     @Override

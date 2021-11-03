@@ -1,5 +1,9 @@
 # Jade-Average
+
 Average of the random numbers generated in multi-agent environment.
+- [Project page](https://github.com/EgorOrachyov/Jade-Average)
+- [License](https://github.com/EgorOrachyov/Jade-Average/blob/main/LICENSE)
+- [Jade tutorial](https://github.com/EgorOrachyov/Jade-Average/blob/main/docs/jade-tutorial.pdf)
 
 ### Algorithm
 Algorithm name is `BFS from chosen leader`.
@@ -90,4 +94,120 @@ Where scripts allows providing following options:
 - `--gui` run jade gui window
 - `--agents-count` number of agents to generate
 - `--agents-links` approximate number of links between agents to generate
+- `--path` absolute path to jar to execute, default is `${project.root}/build/libs/Jade-Average-1.0-SNAPSHOT.jar`
 
+## Details about run
+Script before actual `jade` start outputs to the console all the information
+about agents, network, expected average and list of generated numbers.
+Look at the following run example, where we spawn network with 4 agents
+and nearly 4 links between them (note, required links for graph connectivity are added automatically).
+
+```shell
+python ./scripts/run.py --agents-count=4 --agents-links=4
+```
+
+Script possible output:
+
+```text
+Expected average -2.5 for numbers [-7, -8, -2, 7]
+Execute following cmd java -jar .\Jade-Average\build\libs\Jade-Average-1.0-SNAPSHOT.jar -gui -agents 
+    'ag-mt-0:NumberAgent(0,4,-7,ag-mt-1,ag-mt-2);
+     ag-mt-1:NumberAgent(1,4,-8,ag-mt-0);
+     ag-mt-2:NumberAgent(2,4,-2,ag-mt-0,ag-mt-3);
+     ag-mt-3:NumberAgent(3,4,7,ag-mt-2)'
+```
+
+Jade possible output and agents logs:
+
+```text
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-1 vote round 0
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-3 vote round 0
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-2 vote round 0
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-0 vote round 0
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-1 vote round 1
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-0 vote round 1
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-2 vote round 1
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-3 vote round 1
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-0 vote round 2
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-1 vote round 2
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-2 vote round 2
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-3 vote round 2
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-0 vote round 3
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-1 vote round 3
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-2 vote round 3
+Nov 03, 2021 12:27:20 PM ChooseLeaderBehaviour action
+INFO: ag-mt-3 vote round 3
+Nov 03, 2021 12:27:20 PM TransitionBehaviour action
+INFO: ag-mt-3 I am child, go to bfs
+Nov 03, 2021 12:27:20 PM TransitionBehaviour action
+INFO: ag-mt-1 I am child, go to bfs
+Nov 03, 2021 12:27:20 PM TransitionBehaviour action
+INFO: ag-mt-0 I am leader, go to bfs
+Nov 03, 2021 12:27:20 PM TransitionBehaviour action
+INFO: ag-mt-2 I am child, go to bfs
+Nov 03, 2021 12:27:20 PM LeaderBfsBehaviour action
+INFO: send visit to ag-mt-2
+Nov 03, 2021 12:27:20 PM LeaderBfsBehaviour action
+INFO: send visit to ag-mt-1
+Nov 03, 2021 12:27:20 PM ChildBfsBehaviour action
+INFO: ag-mt-2 get visit (yet not visited, accept)
+Nov 03, 2021 12:27:20 PM ChildBfsBehaviour action
+INFO: ag-mt-1 get visit (yet not visited, accept)
+Nov 03, 2021 12:27:20 PM ChildBfsBehaviour action
+INFO: ag-mt-2 send visit to ag-mt-3
+Nov 03, 2021 12:27:20 PM ChildBfsBehaviour action
+INFO: ag-mt-1 send response
+Nov 03, 2021 12:27:20 PM ChildBfsBehaviour action
+INFO: ag-mt-3 get visit (yet not visited, accept)
+Nov 03, 2021 12:27:20 PM LeaderBfsBehaviour action
+INFO: get response
+Nov 03, 2021 12:27:20 PM ChildBfsBehaviour action
+INFO: ag-mt-3 send response
+Nov 03, 2021 12:27:20 PM ChildBfsBehaviour action
+INFO: ag-mt-2 get response
+Nov 03, 2021 12:27:20 PM ChildBfsBehaviour action
+INFO: ag-mt-2 send response
+Nov 03, 2021 12:27:20 PM LeaderBfsBehaviour action
+INFO: get response
+Nov 03, 2021 12:27:20 PM LeaderBfsBehaviour action
+INFO: Computed AVERAGE: -2.5
+```
+
+## More cases to run
+Run script allows generating agents networks for arbitrary number of agents.
+Try to tweak script params to test different cases.
+
+```shell
+python ./scripts/run.py --agents-count=1 --agents-links=0
+```
+
+```shell
+python ./scripts/run.py --agents-count=5 --agents-links=5
+```
+
+```shell
+python ./scripts/run.py --agents-count=10 --agents-links=20
+```
+
+```shell
+python ./scripts/run.py --agents-count=40 --agents-links=200
+```
+
+## Also
+
+This project is done as part of `Multi-agent technologies` university course.

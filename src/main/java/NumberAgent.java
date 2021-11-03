@@ -28,13 +28,11 @@ public class NumberAgent extends Agent {
 
         // Executed first to choose leader
         addBehaviour(new ChooseLeaderBehaviour(this));
-        // Defines how we will behave: leader or child
-        addBehaviour(new TransitionBehaviour(this));
     }
 
     @Override
     protected void takeDown() {
-        logger.info(getName() + " " + " leader=" + leader);
+        logger.info("Finish " + getLocalName());
     }
 
     public int getId() {

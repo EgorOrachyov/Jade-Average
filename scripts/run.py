@@ -14,8 +14,8 @@ JAR = BUILD / "libs" / ARTIFACT_NAME
 
 
 def add_edge(graph, i, j):
-    graph[i].append(j)
-    graph[j].append(i)
+    graph[i].add(j)
+    graph[j].add(i)
 
 
 def join(links, i, j):
@@ -25,18 +25,18 @@ def join(links, i, j):
     links[p1] = links[p2] = dominate
 
 
-def parent(links, i):
+def parent(links, i) -> int:
     if i == links[i]:
         return i
     links[i] = parent(links, links[i])
     return links[i]
 
 
-def components(links):
+def components(links) -> set:
     return {parent(links, i) for i in range(len(links))}
 
 
-def components_sets(links):
+def components_sets(links) -> dict:
     c = components(links)
     sets = {i: [] for i in c}
     for i in range(len(links)):
@@ -46,7 +46,7 @@ def components_sets(links):
 
 def gen_topology(n: int, m: int):
     links = [i for i in range(n)]
-    graph = [[] for _ in range(n)]
+    graph = [set() for _ in range(n)]
     rnd = random.Random()
 
     # Generate nearly m edges
@@ -100,8 +100,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--gui', default=True)
     parser.add_argument('--path', default=JAR)
-    parser.add_argument('--agents-count', default=50)
-    parser.add_argument('--agents-links', default=0)
+    parser.add_argument('--agents-count', default=40)
+    parser.add_argument('--agents-links', default=200)
     args = parser.parse_args()
 
     average, numbers, config = get_agents_config(args)
