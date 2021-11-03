@@ -1,6 +1,6 @@
 # Jade-Average
 
-Average of the random numbers generated in multi-agent environment.
+Average value of random numbers generated in a multi-agent environment.
 - [Project page](https://github.com/EgorOrachyov/Jade-Average)
 - [License](https://github.com/EgorOrachyov/Jade-Average/blob/main/LICENSE)
 - [Jade tutorial](https://github.com/EgorOrachyov/Jade-Average/blob/main/docs/jade-tutorial.pdf)
@@ -49,12 +49,12 @@ and get the result sum in leader to send it to the `center`.
   - As the result, each agent knows leader id.
 - **Bfs**: 
   - Leader initiates bfs. 
-  - He sends request to know `(sum, n)` of its children. In request, it puts current bfs level. Initial level is 0. 
+  - He sends request to know `(sum, n)` of its children.
   - If agent receives request first time from some agent `k`, then he is child of `k`.
-  - Agent marks himself as visited, increases bfs level and tries to send request further to his children.
+  - Agent marks himself as visited, initializes self `(sum = self.Number, k = 1)` and tries to send request further to his children.
   - If all children visited, then agent returns `(self.Number, 1)`.
   - Else agent waits for children, he successfully sent request.
-  - For a given list of `[(sum, k)i] of size n`, agent returns `(sum_1 + .. + sum_n, k_1 + .. + k_n)`.
+  - For each response from child of kind `(sum, k)`, agent updates his sum `(self.sum + sum, self.k + k)`.
   - When leader receives feedback from all his children, he computes final `(sum + self.Number, k + 1)`.
 - **Notify**:
   - Leader node computes `average = sum / k`.
