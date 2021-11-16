@@ -74,8 +74,8 @@ def gen_topology(n: int, m: int):
 
 
 def get_agents_config(args):
-    n = args.agents_count
-    m = args.agents_links
+    n = int(args.agents_count)
+    m = int(args.agents_links)
     graph = gen_topology(n, m)
     agents = []
     numbers = []
