@@ -4,7 +4,7 @@ import pathlib
 import argparse
 
 AGENT_PREFIX = "ag-mt-"
-AGENT_CLASS_NAME = "NumberAgent"
+AGENT_CLASS_NAME = "bfs.NumberAgent"
 ARTIFACT_NAME = "Jade-Average-1.0-SNAPSHOT.jar"
 
 PATH = pathlib.Path(__file__)
@@ -98,7 +98,7 @@ def get_agents_config(args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--gui', default=True)
+    parser.add_argument('--gui', default=False)
     parser.add_argument('--path', default=JAR)
     parser.add_argument('--agents-count', default=40)
     parser.add_argument('--agents-links', default=200)

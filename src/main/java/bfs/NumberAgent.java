@@ -1,3 +1,5 @@
+package bfs;
+
 import jade.core.Agent;
 
 import java.util.HashSet;

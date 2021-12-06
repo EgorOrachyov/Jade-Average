@@ -1,3 +1,5 @@
+package bfs;
+
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;
 

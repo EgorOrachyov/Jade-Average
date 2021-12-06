@@ -1,3 +1,5 @@
+package bfs;
+
 import jade.core.behaviours.Behaviour;
 
 import java.util.logging.Logger;

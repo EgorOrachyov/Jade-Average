@@ -1,3 +1,5 @@
+package bfs;
+
 public class TransitionBehaviour extends NumberAgentBehaviour {
     TransitionBehaviour(NumberAgent agent) {
         super(agent);
