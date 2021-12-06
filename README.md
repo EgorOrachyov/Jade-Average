@@ -118,7 +118,7 @@ and run `jade` simulation. This scripts must be run from the root directory of t
 Local voting based algorithm:
 
 ```shell
-python ./scripts/run_ls.py --gui=True --agents-count=`n` --agents-links=`m`
+python ./scripts/run_lv.py --gui=True --agents-count=`n` --agents-links=`m`
 ```
 
 BFS based algorithm:
